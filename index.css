@@ -1,7 +1,19 @@
-body{
+h1{
     text-align: center;
     align-items: center;
 }
-h1{
+.start{
+    margin-left: auto;
+    margin-right: auto;
+}
+body{
+    text-align: center;
+}
 
+.magyar{
+    display: inline-block;
+}
+
+.angol{
+    display: inline-block;
 }
