@@ -10,10 +10,10 @@ body{
     text-align: center;
 }
 
-.magyar{
+#magyar{
     display: inline-block;
 }
 
-.angol{
+#angol{
     display: inline-block;
 }
