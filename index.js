@@ -13,20 +13,20 @@ const words = [
     {hu: "asztal", en: "table"},
 ]
 
+const fodiv=document.getElementById("fodiv");
+const fodivangol=document.getElementById("fodivangol");
+fodiv.className="magyar"
+fodivangol.className="angol"
+
+
 start.addEventListener("click", function(){
     
-    let div1 = document.createElement("div");
-    let div2 = document.createElement("div");
-    div1.id="magyar";
-    div2.id="angol";
-    let helyes = document.createElement("span");
-    let helyt = document.createElement("span");
-    document.body.appendChild(helyes);
-    document.body.appendChild(helyt);
-    helyes.innerText="Helyes válaszok:"
-    document.body.appendChild(div1);
-    document.body.appendChild(div2);
-    for(let i=0; i<10;i++){
+    
+    
+    for(let i=0; i<words.length;i++){
+        let div1 = document.createElement("div");
+        let div2 = document.createElement("div");
+        
         let gomb1= document.createElement("button");
         let gomb2= document.createElement("button");
         
@@ -34,7 +34,8 @@ start.addEventListener("click", function(){
         gomb2.innerText=words[i].en;
         div1.appendChild(gomb1);
         div2.appendChild(gomb2);
-
+        fodiv.appendChild(div1);
+        fodivangol.appendChild(div2);
         let helyesvalasz=0;
         let helytelen=0;
 
@@ -43,9 +44,29 @@ start.addEventListener("click", function(){
             gomb1.style.backgroundColor = "olive";
             gomb2.addEventListener("click",function(){
                 
-                let masodikvalasztas = gomb2.innerText
+                let masodikvalasztas= gomb2.innerText;
+                let valasz=cucc(elsovalasztas,masodikvalasztas)
+                
+                if(valasz==1){
+                    gomb1.style.backgroundColor = "Green"
+                    gomb2.style.backgroundColor = "Green"
+                    helyesvalasz++
+                    helyes.innerText="Helyes válaszok" + helyesvalasz;
+                    elsovalasztas="";
+                    masodikvalasztas=""
+                }
+                else{
+                    gomb1.style.backgroundColor = "White";
+                    gomb2.style.backgroundColor = "White";
+                    helytelen++
+                    helyt.innerText="Helytelen válaszok:" + helytelen;
+                    elsovalasztas="";
+                    masodikvalasztas=""
+                }
+
+                /*let masodikvalasztas = gomb2.innerText
                 gomb2.style.backgroundColor = "olive"
-                if(elsovalasztas==words[i].hu && masodikvalasztas==words[i].en){
+                if(elsovalasztas==words[hely].hu && masodikvalasztas==words[hely].en){
                     gomb1.style.backgroundColor = "Green"
                     gomb2.style.backgroundColor = "Green"
                     helyesvalasz++
@@ -56,36 +77,43 @@ start.addEventListener("click", function(){
                 else{
                     gomb1.style.backgroundColor = "White";
                     gomb2.style.backgroundColor = "White";
-                    helytelen++
-                    elsovalasztas=""
-                    masodikvalasztas=""
-                }
+                    helytelen++;
+                    elsovalasztas="";
+                    masodikvalasztas="";
+                    helyt.innerText="Helytelen válaszok:" + helytelen;
+                }*/
             })
             
         })
         
-        /*gomb2.addEventListener("click",function(){
-            
-            gomb2.style.backgroundColor = "olive";
-            gomb1.addEventListener("click",function(){
-                let masodikvalasztas = gomb2.innerText
-                let elsovalasztas = gomb1.innerText
-                gomb1.style.backgroundColor = "olive"
-                if(elsovalasztas==words[i].hu && masodikvalasztas==words[i].en){
-                    gomb1.style.backgroundColor = "Green"
-                    gomb2.style.backgroundColor = "Green"
-                    helyesvalasz++
-                    masodikvalasztas="";
-                }
-                else{
-                    gomb1.style.backgroundColor = "White";
-                    gomb2.style.backgroundColor = "White";
-                    helytelen++
-                    masodikvalasztas=""
-                }
-            })
-        })*/
+        
         
     }
 
+
+    function cucc(elsovalasz,masodikvalasz){
+        let helytelen=1
+        for(let i=0;i<words.length;i++){
+            if(elsovalasz==words[i].hu && masodikvalasz==words[i].en){
+                return 1;
+            }
+            else{
+                helytelen++
+            }
+        }
+        if(helytelen== words.length){
+            return 0;
+        }
+        
+    }
+    let helyes = document.createElement("p");
+    let helyt = document.createElement("p");
+    document.body.appendChild(helyes);
+    document.body.appendChild(helyt);
+    helyes.innerText="Helyes válaszok:"
+    helyt.innerText="Helytelen válaszok:"
 })
+
+
+document.body.appendChild(fodiv);
+document.body.appendChild(fodivangol);
