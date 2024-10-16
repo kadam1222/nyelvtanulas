@@ -1,0 +1,20 @@
+
+body{
+    text-align: center;
+    background-color: aliceblue;
+}
+
+.magyar{
+    display: inline-block;
+    margin-right: 50px;
+}
+
+.angol{
+    display: inline-block;
+    margin-left: 50px;
+}
+
+button{
+    width: 150px;
+    height: 50px;
+}
